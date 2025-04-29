@@ -217,7 +217,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-100 py-16">
+    <!-- <div class="bg-gray-100 py-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-blue-800 mb-4">Tin tức & Cập nhật</h2>
@@ -260,7 +260,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="bg-blue-600 text-white py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-6">Bạn cần tư vấn về dự án xây dựng?</h2>
