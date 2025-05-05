@@ -9,8 +9,8 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/landing_929
-  DOCKERFILE_PATH: Dockerfile
-  CONTEXT: landing_929
+  DOCKERFILE_PATH: ./Dockerfile     # Đặt Dockerfile ở thư mục gốc
+  CONTEXT: .                        # Đặt context là thư mục gốc
 
 jobs:
   build-and-push:
