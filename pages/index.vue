@@ -1,18 +1,27 @@
 <template>
   <div class="">
-    <div class="bg-blue-800 text-white overflow-hidden">
+    <!-- Hero Section -->
+    <div class="bg-blue-800 text-white overflow-hidden relative">
       <div class="container mx-auto px-4 py-20 md:py-32">
-        <div class="z-10 max-w-2xl">
+        <div class="z-10 max-w-2xl relative">
           <h1 class="text-4xl md:text-5xl font-bold mb-4">Giải pháp xây dựng toàn diện</h1>
           <p class="text-xl md:text-2xl mb-8">Với hơn 15 năm kinh nghiệm trong lĩnh vực tư vấn, thiết kế và giám sát xây dựng</p>
           <div class="flex flex-col sm:flex-row gap-4">
-            <button class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">Dịch vụ của chúng tôi</button>
-            <button class="px-6 py-3 border border-white text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">Liên hệ ngay</button>
+            <!-- <button class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">Dịch vụ của chúng tôi</button>
+            <button class="px-6 py-3 border border-white text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">Liên hệ ngay</button> -->
+            <NuxtLink to="/introduce/about_us" class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-center">
+              Dịch vụ của chúng tôi
+            </NuxtLink>
+            <NuxtLink to="/contact" class="px-6 py-3 border border-white text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-center">
+              Liên hệ ngay
+            </NuxtLink>
           </div>
         </div>
-        <div class="right-0 top-0 h-full w-1/2 bg-blue-700 transform skew-x-12 origin-top-right hidden lg:block"></div>
+        <div class="absolute right-0 top-0 h-full w-1/2 bg-blue-700 transform skew-x-12 origin-top-right hidden lg:block"></div>
       </div>
     </div>
+
+    <!-- Services Section -->
     <div class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-blue-800 mb-4">Dịch vụ chính</h2>
@@ -62,11 +71,13 @@
         </div>
       </div>
     </div>
+
+    <!-- About Section -->
     <div class="bg-gray-100 py-16">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
           <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-            <NuxtImg placeholder="/placeholder.png" src="/images/about-company.jpg" alt="Về công ty" class="rounded-lg shadow-lg w-full" />
+            <NuxtImg placeholder="/placeholder.png" src="https://www.cybereason.co.jp/uploads/2022/12/blog_20221220-1.jpg" alt="Về công ty" class="rounded-lg shadow-lg w-full" />
           </div>
           <div class="md:w-1/2">
             <h2 class="text-3xl font-bold text-blue-800 mb-4">Công Ty CP Tư Vấn Xây Dựng 929</h2>
@@ -91,60 +102,44 @@
                 <span>Đội ngũ hơn 20 kỹ sư, kiến trúc sư giàu kinh nghiệm</span>
               </div>
             </div>
-            <button class="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">Tìm hiểu thêm về chúng tôi</button>
+            <!-- <button class="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">Tìm hiểu thêm về chúng tôi</button> -->
+            <NuxtLink to="/introduce/about_us" class="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold inline-block">
+            Tìm hiểu thêm về chúng tôi
+          </NuxtLink>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Projects Section -->
     <div class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-blue-800 mb-4">Dự án tiêu biểu</h2>
         <p class="text-gray-600 max-w-2xl mx-auto">Chúng tôi đã thực hiện hơn 100 dự án từ quy mô nhỏ đến lớn tại Thái Nguyên và các tỉnh lân cận</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-          <NuxtImg placeholder="/placeholder.png" alt="Dự án đường bê tông" class="w-full h-48 object-cover" />
+        <div v-for="(project, index) in projects" :key="index" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer" @click="openModal(project)">
+          <NuxtImg placeholder="/placeholder.png" :src="project.image" :alt="project.name" class="w-full h-48 object-cover" />
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Đường bê tông xã Phúc Trìu</h3>
-            <p class="text-gray-600 mb-3">Thành phố Thái Nguyên</p>
-            <p class="text-gray-700 mb-4">Tư vấn thiết kế hệ thống đường giao thông nông thôn</p>
+            <h3 class="text-xl font-semibold mb-2">{{ project.name }}</h3>
+            <p class="text-gray-600 mb-3">{{ project.location }}</p>
+            <p class="text-gray-700 mb-4">{{ project.description }}</p>
             <div class="flex justify-between items-center">
-              <span class="text-sm text-blue-600">2020</span>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-          <NuxtImg placeholder="/placeholder.png" src="/images/project-2.jpg" alt="Trường mầm non" class="w-full h-48 object-cover" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Trường mầm non 19-5</h3>
-            <p class="text-gray-600 mb-3">Thành phố Thái Nguyên</p>
-            <p class="text-gray-700 mb-4">Tư vấn giám sát thi công công trình giáo dục</p>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-blue-600">2019</span>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-          <NuxtImg placeholder="/placeholder.png" src="/images/project-3.jpg" alt="Hệ thống thoát nước" class="w-full h-48 object-cover" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Hệ thống thoát nước phường Túc Duyên</h3>
-            <p class="text-gray-600 mb-3">Thành phố Thái Nguyên</p>
-            <p class="text-gray-700 mb-4">Thiết kế hệ thống thoát nước đô thị</p>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-blue-600">2021</span>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết →</a>
+              <span class="text-sm text-blue-600">{{ project.year }}</span>
+              <span class="text-blue-600 hover:text-blue-800 font-medium">Xem chi tiết →</span>
             </div>
           </div>
         </div>
       </div>
       <div class="text-center mt-10">
-        <button class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold">Xem tất cả dự án</button>
+        <!-- <button class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold">Xem tất cả dự án</button> -->
+        <NuxtLink to="/project" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold inline-block">
+          Xem tất cả dự án
+        </NuxtLink>
       </div>
     </div>
+
+    <!-- Why Choose Us Section -->
     <div class="bg-blue-800 text-white py-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -184,6 +179,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Testimonials Section -->
     <div class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-blue-800 mb-4">Khách hàng nói về chúng tôi</h2>
@@ -193,7 +190,7 @@
         <div class="bg-white p-8 rounded-lg shadow-md">
           <div class="flex items-center mb-4">
             <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <NuxtImg placeholder="/placeholder.png" src="/images/client-1.jpg" alt="Khách hàng" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png" src="https://baitap.mobiedu.vn/img/feedback-1.jpg" alt="Khách hàng" class="w-full h-full object-cover" />
             </div>
             <div>
               <h4 class="font-semibold">Ông Nguyễn Văn A</h4>
@@ -202,11 +199,11 @@
           </div>
           <p class="text-gray-700 italic">"Công ty 929 đã hỗ trợ chúng tôi trong dự án đường bê tông liên tổ với chất lượng thiết kế tốt và tiến độ đảm bảo. Đội ngũ kỹ sư rất chuyên nghiệp và tận tâm."</p>
         </div>
-        
+
         <div class="bg-white p-8 rounded-lg shadow-md">
           <div class="flex items-center mb-4">
             <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <NuxtImg placeholder="/placeholder.png" src="/images/client-2.jpg" alt="Khách hàng" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png" src="https://baitap.mobiedu.vn/img/feedback-4.jpg" alt="Khách hàng" class="w-full h-full object-cover" />
             </div>
             <div>
               <h4 class="font-semibold">Bà Trần Thị B</h4>
@@ -217,66 +214,167 @@
         </div>
       </div>
     </div>
-    <!-- <div class="bg-gray-100 py-16">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-blue-800 mb-4">Tin tức & Cập nhật</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Các thông tin mới nhất về hoạt động của công ty và ngành xây dựng</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-            <NuxtImg placeholder="/placeholder.png" src="/images/news-1.jpg" alt="Tin tức" class="w-full h-48 object-cover"/>
-            <div class="p-6">
-              <span class="text-sm text-blue-600">15/06/2023</span>
-              <h3 class="text-xl font-semibold my-2">Công ty 929 nhận giải thưởng Doanh nghiệp tiêu biểu</h3>
-              <p class="text-gray-700 mb-4">Vinh dự nhận giải thưởng Doanh nghiệp tiêu biểu tỉnh Thái Nguyên năm 2023</p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Đọc tiếp →</a>
-            </div>
-          </div>
-          
-          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-            <NuxtImg placeholder="/placeholder.png" src="/images/news-2.jpg" alt="Tin tức" class="w-full h-48 object-cover"/>
-            <div class="p-6">
-              <span class="text-sm text-blue-600">02/06/2023</span>
-              <h3 class="text-xl font-semibold my-2">Hội thảo công nghệ xây dựng 2023</h3>
-              <p class="text-gray-700 mb-4">Tham gia hội thảo về các công nghệ xây dựng hiện đại tại Hà Nội</p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Đọc tiếp →</a>
-            </div>
-          </div>
-          
-          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-            <NuxtImg placeholder="/placeholder.png" src="/images/news-3.jpg" alt="Tin tức" class="w-full h-48 object-cover"/>
-            <div class="p-6">
-              <span class="text-sm text-blue-600">20/05/2023</span>
-              <h3 class="text-xl font-semibold my-2">Ký kết hợp tác với đối tác mới</h3>
-              <p class="text-gray-700 mb-4">Ký kết hợp tác chiến lược với Công ty CP Vật liệu xây dựng Thái Nguyên</p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Đọc tiếp →</a>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-10">
-          <button class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold">
-            Xem tất cả tin tức
-          </button>
-        </div>
-      </div>
-    </div> -->
+
+    <!-- CTA Section -->
     <div class="bg-blue-600 text-white py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-6">Bạn cần tư vấn về dự án xây dựng?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">Liên hệ ngay với chúng tôi để được hỗ trợ và tư vấn miễn phí</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+          <NuxtLink to="/contact" class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
             Gửi yêu cầu
-          </button>
-          <div class="flex items-center justify-center px-6 py-3 border border-white rounded-lg">
+          </NuxtLink>
+          <NuxtLink to="/contact" class="flex items-center justify-center px-6 py-3 border border-white rounded-lg hover:bg-blue-500 transition-colors">
             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
             </svg>
             <span>0986 108 999</span>
-          </div>
+          </NuxtLink>
         </div>
       </div>
     </div>
+
+    <!-- Project Modal -->
+    <transition name="modal">
+      <div v-if="isModalOpen" class="fixed inset-0 z-50 overflow-y-auto" @click.self="closeModal">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <!-- Background overlay -->
+          <transition name="modal-fade">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+          </transition>
+
+          <!-- Modal content -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+          <transition name="modal-slide">
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                    <div class="flex justify-between items-start">
+                      <h3 class="text-2xl leading-6 font-bold text-gray-900 mb-4" id="modal-headline">
+                        {{ selectedProject.name }}
+                      </h3>
+                      <button type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none" @click="closeModal">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <NuxtImg placeholder="/placeholder.png" :src="selectedProject.image" :alt="selectedProject.name" class="w-full h-auto rounded-lg" />
+                      </div>
+                      <div>
+                        <div class="mb-6">
+                          <h4 class="text-lg font-semibold text-blue-700 mb-2">Thông tin dự án</h4>
+                          <div class="space-y-2">
+                            <p class="text-gray-700"><span class="font-medium">Địa điểm:</span> {{ selectedProject.location }}</p>
+                            <p class="text-gray-700"><span class="font-medium">Năm thực hiện:</span> {{ selectedProject.year }}</p>
+                            <p class="text-gray-700"><span class="font-medium">Chủ đầu tư:</span> {{ selectedProject.investor }}</p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 class="text-lg font-semibold text-blue-700 mb-2">Dịch vụ cung cấp</h4>
+                          <p class="text-gray-700">{{ selectedProject.services }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" @click="closeModal">Đóng</button>
+              </div>
+            </div>
+          </transition>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
+
+<script setup>
+const isModalOpen = ref(false);
+const selectedProject = ref(null);
+const projects = ref([
+  {
+    id: 1,
+    name: "Đường bê tông xã Phúc Trìu",
+    location: "Thành phố Thái Nguyên",
+    description: "Tư vấn thiết kế hệ thống đường giao thông nông thôn",
+    year: "2020",
+    image: "https://baothainguyen.vn/file/e7837c027f6ecd14017ffa4e5f2a0e34/042025/duong_be_tong_20250411093853_20250411171647.jpg",
+    investor: "UBND xã Phúc Trìu",
+    services: "Tư vấn thiết kế kỹ thuật, lập dự toán, giám sát thi công hệ thống đường giao thông nông thôn với tổng chiều dài 3.5km",
+  },
+  {
+    id: 2,
+    name: "Trường mầm non 19-5",
+    location: "Thành phố Thái Nguyên",
+    description: "Tư vấn giám sát thi công công trình giáo dục",
+    year: "2019",
+    image: "https://84865ea5f6.vws.vegacdn.vn//UploadImages/mn19thang5q8/DSC_001.jpg?w=1130",
+    investor: "Phòng Giáo dục TP Thái Nguyên",
+    services: "Giám sát thi công công trình trường mầm non 2 tầng với tổng diện tích 1.200m2, bao gồm 8 phòng học và các phòng chức năng",
+  },
+  {
+    id: 3,
+    name: "Hệ thống thoát nước phường Túc Duyên",
+    location: "Thành phố Thái Nguyên",
+    description: "Thiết kế hệ thống thoát nước đô thị",
+    year: "2021",
+    image: "https://media.vietnamplus.vn/images/7255a701687d11cb8c6bbc58a6c8078515e600e66d339856ded562c40df794750079d0f599b1c26097530426870ecd8a/4-1269.jpg",
+    investor: "UBND phường Túc Duyên",
+    services: "Thiết kế hệ thống thoát nước với tổng chiều dài 2.8km, đường kính cống từ 300-600mm, kèm theo các hố ga kiểm tra",
+  },
+]);
+
+const openModal = (project) => {
+  selectedProject.value = project;
+  isModalOpen.value = true;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  document.body.style.overflow = 'auto';
+};
+</script>
+
+<style>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-slide-enter-active,
+.modal-slide-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-slide-enter-from,
+.modal-slide-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+</style>
