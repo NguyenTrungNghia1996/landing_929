@@ -32,7 +32,7 @@
             <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
               <h4 class="font-bold text-gray-800 mb-2">Thông tin ban đầu:</h4>
               <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                <li>Vốn điều lệ: 1.966 tỷ đồng</li>
+                <!-- <li>Vốn điều lệ: 1.966 tỷ đồng</li> -->
                 <li>Trụ sở: Tổ 7 phường Tân Lập, TP Thái Nguyên</li>
                 <li>Ngành nghề chính: Tư vấn xây dựng, khảo sát, thiết kế</li>
               </ul>

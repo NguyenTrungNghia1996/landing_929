@@ -1,22 +1,6 @@
 <template>
-  <header class="h-[70px] md:h-[80px] w-full bg-white z-[10] border-b border-gray-300 fixed">
+  <header class="h-[70px] md:h-[80px] w-full bg-white z-[100] border-b border-gray-300 fixed">
     <div class="container mx-auto h-full flex justify-between items-center px-4">
-      <!-- Logo Text -->
-      <!-- <NuxtLink 
-        to="/" 
-        class="group flex items-center gap-1 hover:opacity-90 transition-opacity"
-        aria-label="Trang chủ"
-      >
-        <div class="text-center">
-          <span class="block text-xl md:text-2xl font-bold text-gray-900 leading-tight group-hover:text-primary transition-colors">
-            CÔNG TY CPTV
-          </span>
-          <span class="block text-sm md:text-base font-semibold text-primary tracking-wider mt-[-2px]">
-            XÂY DỰNG 929
-          </span>
-          <div class="h-[3px] bg-gradient-to-r from-blue-500 to-teal-400 mt-1 w-full transition-transform origin-left"></div>
-        </div>
-      </NuxtLink> -->
       <NuxtLink to="/" class="group flex items-center gap-1 hover:opacity-90 transition-opacity" aria-label="Trang chủ">
         <div class="text-center">
           <span class="block text-xl md:text-2xl font-bold text-gray-900 leading-tight group-hover:text-primary transition-colors"> CÔNG TY CPTV </span>

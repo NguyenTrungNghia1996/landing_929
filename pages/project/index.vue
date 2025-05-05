@@ -144,9 +144,7 @@
         <h2 class="text-3xl font-bold mb-6">Bạn cần tư vấn về dự án xây dựng?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">Liên hệ ngay với chúng tôi để được hỗ trợ và tư vấn miễn phí</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <NuxtLink to="/contact" class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
-            Gửi yêu cầu
-          </NuxtLink>
+          <NuxtLink to="/contact" class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold"> Gửi yêu cầu </NuxtLink>
           <NuxtLink to="/contact" class="flex items-center justify-center px-6 py-3 border border-white rounded-lg hover:bg-blue-500 transition-colors">
             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
@@ -160,9 +158,20 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-
-const projects = ref([]);
+const projects = ref([
+  {
+    TT: 1,
+    project: "Dự án xây dựng nhà máy gạch liên hoàn xóm Ao Sen xã Thành Công huyện Phổ  Yên, TP Thái Nguyên.",
+    consulting_work: "Khảo sát địa hình",
+    investor: "C.ty TNHH  HồngTrang",
+  },
+  {
+    TT: 2,
+    project: "Trường mầm non 19-5 thành phố Thái Nguyên",
+    consulting_work: "Tư vấn giám sát",
+    investor: "Trường MN 19-5 TP TN",
+  },
+]);
 const selectedProject = ref(null);
 const isModalOpen = ref(false);
 const activeCategory = ref("Tất cả");
@@ -193,7 +202,6 @@ const totalPages = computed(() => {
   return Math.ceil(filteredProjects.value.length / projectsPerPage);
 });
 
-// Tính toán các trang hiển thị (có dấu ...)
 const visiblePages = computed(() => {
   const total = totalPages.value;
   const current = currentPage.value;
@@ -282,9 +290,7 @@ const goToPage = page => {
   currentPage.value = page;
 };
 
-// Lấy dữ liệu khi component được mount
 onMounted(() => {
-  // Bạn có thể thêm dữ liệu dự án ở đây hoặc gọi API
   projects.value = [
     {
       TT: 1,
