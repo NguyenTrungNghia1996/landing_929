@@ -49,7 +49,7 @@
           </ul>
         </div>
         <div class="col-span-1 md:col-span-2">
-          <h3 class="font-roboto font-bold text-base sm:text-lg mb-2 sm:mb-4">CÔNG TY CP TƯ VẤN XÂY DỰNG 929</h3>
+          <h3 class="font-roboto font-bold text-base sm:text-lg mb-2 sm:mb-4">CÔNG TY CỔ PHẦN TƯ VẤN XÂY DỰNG 929</h3>
           <ul class="space-y-1 sm:space-y-2 text-sm sm:text-base">
             <li class="font-roboto flex flex-col sm:flex-row sm:items-start gap-1">
               <div class="flex items-start">

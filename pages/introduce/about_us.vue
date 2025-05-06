@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-16 md:py-24">
       <div class="container mx-auto px-4">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4">Công Ty CP Tư Vấn Xây Dựng 929</h1>
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">Công Ty Cổ Phần Tư Vấn Xây Dựng 929</h1>
         <p class="text-xl md:text-2xl max-w-3xl">Uy tín - Chất lượng - Tiến độ - Giá thành và hiệu quả</p>
       </div>
     </div>
@@ -55,8 +55,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Services Section -->
     <div class="bg-blue-50 py-12 md:py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-800 mb-12">Lĩnh vực hoạt động</h2>

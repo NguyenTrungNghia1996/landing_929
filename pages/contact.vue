@@ -5,7 +5,7 @@
         <!-- Thông tin công ty -->
         <div class="bg-blue-600 text-white p-6 md:p-10 flex flex-col justify-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">Liên hệ với chúng tôi</h2>
-          <p class="mb-2 text-base md:text-lg"><strong>Tên công ty:</strong> Công ty CP Tư vấn Xây dựng 929</p>
+          <p class="mb-2 text-base md:text-lg"><strong>Tên công ty:</strong> Công ty Cổ Phần Tư vấn Xây dựng 929</p>
           <p class="mb-2 text-base md:text-lg"><strong>Địa chỉ:</strong> Tổ 7, đường 3-2, phường Tân Lập, TP Thái Nguyên</p>
           <p class="mb-2 text-base md:text-lg"><strong>Điện thoại:</strong> 0986 108 999</p>
           <p class="mb-2 text-base md:text-lg"><strong>Email:</strong> congty929@gmail.com.vn</p>

@@ -28,8 +28,8 @@
                 <h3 class="text-xl font-bold mb-2 line-clamp-2">{{ shortenProjectName(project.project) }}</h3>
                 <p class="text-gray-500 text-sm mb-3"><span class="font-medium">Chủ đầu tư:</span> {{ project.investor || "" }}</p>
                 <p class="text-sm text-gray-500 mb-4">
-                  <span v-if="getProjectYear(project.project)" class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Năm: {{ getProjectYear(project.project) }} </span>
-                  <span v-else class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Đã hoàn thành </span>
+                  <!-- <span v-if="getProjectYear(project.project)" class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Năm: {{ getProjectYear(project.project) }} </span> -->
+                  <!-- <span v-else class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Đã hoàn thành </span> -->
                 </p>
               </div>
             </div>
@@ -107,7 +107,7 @@
                   <h4 class="font-semibold text-lg mb-3 text-blue-700">Thông tin dự án</h4>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p class="text-gray-700"><span class="font-medium">Năm thực hiện:</span> {{ getProjectYear(selectedProject.project) || "Đã hoàn thành" }}</p>
+                      <!-- <p class="text-gray-700"><span class="font-medium">Năm thực hiện:</span> {{ getProjectYear(selectedProject.project) || "Đã hoàn thành" }}</p> -->
                       <p class="text-gray-700"><span class="font-medium">Chủ đầu tư:</span> {{ selectedProject.investor || "Không có thông tin" }}</p>
                     </div>
                     <div>
@@ -122,14 +122,14 @@
                   <p class="text-gray-700 whitespace-pre-line">{{ selectedProject.description }}</p>
                 </div>
 
-                <div v-if="selectedProject.gallery && selectedProject.gallery.length > 1" class="bg-gray-50 p-4 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                <!-- <div v-if="selectedProject.gallery && selectedProject.gallery.length > 1" class="bg-gray-50 p-4 rounded-lg transition-colors duration-200 hover:bg-gray-100">
                   <h4 class="font-semibold text-lg mb-3 text-blue-700">Hình ảnh dự án</h4>
                   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     <div v-for="(img, idx) in selectedProject.gallery" :key="idx" @click="selectedProject.image = img" class="cursor-pointer aspect-square overflow-hidden rounded-lg border-2 transition-all duration-200" :class="selectedProject.image === img ? 'border-blue-500' : 'border-transparent hover:border-gray-300'">
                       <NuxtImg placeholder="/placeholder.png" :src="img" class="w-full h-full object-cover" />
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@
 const projects = ref([
   {
     TT: 1,
-    project: "Cải tạo, nâng cấp đường Hương Sơn, TP Thái Nguyên (2023)",
+    project: "Cải tạo, nâng cấp đường Hương Sơn, TP Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND P.Hương Sơn",
     image: "/images/projects/duong-huong-son.jpg",
@@ -193,7 +193,7 @@ const projects = ref([
   },
   {
     TT: 2,
-    project: "Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên (2023)",
+    project: "Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND phường Quang Vinh – TPTN.",
     image: "/images/projects/tan-lap-ql3.jpg",
@@ -202,7 +202,7 @@ const projects = ref([
   },
   {
     TT: 3,
-    project: "Xây dựng, nâng cấp doanh trại Ban CHQS huyện Phú Lương (2023)",
+    project: "Xây dựng, nâng cấp doanh trại Ban CHQS huyện Phú Lương",
     consulting_work: "Tư vấn thiết kế",
     investor: "Ban CHQS huyện Phú Lương",
     image: "/images/projects/ban-chqs-phu-luong.jpg",
@@ -211,7 +211,7 @@ const projects = ref([
   },
   {
     TT: 4,
-    project: "Cải tạo, nâng cấp đường Lưu Nhân Chú và trục đường vào phường Hương Sơn TPTN (2023)",
+    project: "Cải tạo, nâng cấp đường Lưu Nhân Chú và trục đường vào phường Hương Sơn TPTN",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND phường Hương Sơn",
     image: "/images/projects/luu-nhan-chu.jpg",
@@ -220,7 +220,7 @@ const projects = ref([
   },
   {
     TT: 5,
-    project: "Các công trình cải tạo đường GTNT, cầu bê tông cốt thép tại Thái Nguyên, Bắc Kạn (2023)",
+    project: "Các công trình cải tạo đường GTNT, cầu bê tông cốt thép tại Thái Nguyên, Bắc Kạn",
     consulting_work: "Tư vấn thiết kế",
     investor: "Thành phố Thái Nguyên - Bắc Kạn",
     image: "/images/projects/gtnt-bac-kan.jpg",

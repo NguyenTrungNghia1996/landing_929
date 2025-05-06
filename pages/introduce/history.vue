@@ -20,7 +20,7 @@
             <h2 class="text-2xl font-bold text-blue-700">2010</h2>
             <h3 class="text-xl font-semibold text-gray-800 mb-2">Thành lập công ty</h3>
             <p class="text-gray-600">
-              Công ty CP Tư vấn Xây dựng 929 được thành lập ngày 27/02/2010 với giấy chứng nhận kinh doanh số 4600796888 do Sở Kế hoạch và Đầu tư tỉnh Thái Nguyên cấp.
+              Công ty Cổ Phần Tư vấn Xây dựng 929 được thành lập ngày 27/02/2010 với giấy chứng nhận kinh doanh số 4600796888 do Sở Kế hoạch và Đầu tư tỉnh Thái Nguyên cấp.
             </p>
           </div>
           
