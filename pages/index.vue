@@ -77,7 +77,7 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
           <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-            <NuxtImg placeholder="/placeholder.png" src="https://www.cybereason.co.jp/uploads/2022/12/blog_20221220-1.jpg" alt="Về công ty" class="rounded-lg shadow-lg w-full" />
+            <NuxtImg placeholder="/placeholder.png" src="/home.jpg" alt="Về công ty" class="rounded-lg shadow-lg w-full" />
           </div>
           <div class="md:w-1/2">
             <h2 class="text-3xl font-bold text-blue-800 mb-4">Công Ty CP Tư Vấn Xây Dựng 929</h2>
@@ -181,7 +181,7 @@
     </div>
 
     <!-- Testimonials Section -->
-    <div class="container mx-auto px-4 py-16">
+    <!-- <div class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-blue-800 mb-4">Khách hàng nói về chúng tôi</h2>
         <p class="text-gray-600 max-w-2xl mx-auto">Những phản hồi từ đối tác và khách hàng đã hợp tác với Công ty 929</p>
@@ -213,7 +213,7 @@
           <p class="text-gray-700 italic">"Chúng tôi rất hài lòng với dịch vụ giám sát thi công của Công ty 929. Các kỹ sư giám sát luôn có mặt tại công trình và phát hiện kịp thời các vấn đề phát sinh."</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- CTA Section -->
     <div class="bg-blue-600 text-white py-16">

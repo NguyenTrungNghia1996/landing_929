@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="md:w-1/2">
-          <NuxtImg placeholder="/placeholder.png" src="https://www.cybereason.co.jp/uploads/2022/12/blog_20221220-1.jpg" alt="Trụ sở công ty" class="rounded-lg shadow-lg w-full h-auto object-cover"/>
+          <NuxtImg placeholder="/placeholder.png" src="/home.jpg" alt="Trụ sở công ty" class="rounded-lg shadow-lg w-full h-auto object-cover"/>
         </div>
       </div>
     </div>
@@ -245,7 +245,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div class="bg-white rounded-lg overflow-hidden shadow-md text-center p-6">
             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-100">
-              <NuxtImg placeholder="/placeholder.png"  src="/images/team-1.jpg" alt="Đào Đình Dũng" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png"  src="/images/team-1.png" alt="Đào Đình Dũng" class="w-full h-full object-cover"/>
             </div>
             <h3 class="text-xl font-semibold">Ông. Đào Đình Dũng</h3>
             <p class="text-blue-600 mb-2">Chủ tịch HĐQT - Giám đốc</p>
@@ -255,7 +255,7 @@
 
           <div class="bg-white rounded-lg overflow-hidden shadow-md text-center p-6">
             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-100">
-              <NuxtImg placeholder="/placeholder.png"  src="/images/team-2.jpg" alt="Vũ Hồng Phong" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png"  src="/images/team-2.png" alt="Vũ Hồng Phong" class="w-full h-full object-cover"/>
             </div>
             <h3 class="text-xl font-semibold">Ông. Vũ Hồng Phong</h3>
             <p class="text-blue-600 mb-2">Thành viên HĐQT</p>
@@ -265,7 +265,7 @@
 
           <div class="bg-white rounded-lg overflow-hidden shadow-md text-center p-6">
             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-100">
-              <NuxtImg placeholder="/placeholder.png" src="/images/team-3.jpg" alt="Trần Thị Thu Hiền" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png" src="/images/team-3.png" alt="Trần Thị Thu Hiền" class="w-full h-full object-cover"/>
             </div>
             <h3 class="text-xl font-semibold">Bà. Trần Thị Thu Hiền</h3>
             <p class="text-blue-600 mb-2">Thành viên HĐQT</p>
@@ -275,7 +275,7 @@
 
           <div class="bg-white rounded-lg overflow-hidden shadow-md text-center p-6">
             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-blue-100">
-              <NuxtImg placeholder="/placeholder.png"  src="/images/team-4.jpg" alt="Nguyễn Thị Thu Hằng" class="w-full h-full object-cover"/>
+              <NuxtImg placeholder="/placeholder.png"  src="/images/team-4.png" alt="Nguyễn Thị Thu Hằng" class="w-full h-full object-cover"/>
             </div>
             <h3 class="text-xl font-semibold">Bà. Nguyễn Thị Thu Hằng</h3>
             <p class="text-blue-600 mb-2">Trưởng phòng kế toán</p>
