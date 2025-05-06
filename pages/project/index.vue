@@ -50,7 +50,7 @@
     </div>
 
     <!-- Project Modal -->
-    <a-modal v-model:visible="isModalOpen" :title="selectedProject?.project" width="90%" :footer="null" @cancel="closeModal" class="max-w-4xl">
+    <a-modal v-model:open="isModalOpen" :title="selectedProject?.project" width="90%" :footer="null" @cancel="closeModal" class="max-w-4xl">
       <div class="modal-content">
         <!-- Image Gallery -->
         <a-carousel v-if="selectedProject?.gallery?.length > 0" arrows dots-class="custom-dots">
