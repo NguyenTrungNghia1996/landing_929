@@ -239,7 +239,7 @@
     </Transition>
 
     <!-- Team Section -->
-    <div class="bg-gray-100 py-12 md:py-16">
+    <!-- <div class="bg-gray-100 py-12 md:py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-800 mb-12">Đội ngũ nhân sự</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -284,7 +284,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Values Section -->
     <div class="container mx-auto px-4 py-12 md:py-16">
