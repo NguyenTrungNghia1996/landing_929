@@ -8,171 +8,149 @@
       </div>
     </div>
     <!-- About Section -->
-    <About_Section/>
-    <About_Activity/>
+    <About_Section />
+    <About_Activity />
     <!-- Experience Section -->
     <div class="container mx-auto px-4 py-12 md:py-16">
       <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-800 mb-12">Dự án tiêu biểu</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div 
-          v-for="project in projects" 
-          :key="project.id"
-          class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-          @click="openModal(project)"
-        >
-          <NuxtImg 
-            placeholder="/placeholder.png" 
-            :src="project.image" 
-            :alt="project.name" 
-            class="w-full h-48 object-cover"
-          />
+        <div v-for="project in projects" :key="project.TT" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer" @click="openModal(project)">
+          <NuxtImg placeholder="/placeholder.png" :src="project.image" :alt="project.project" class="w-full h-48 object-cover" />
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">{{ project.name }}</h3>
-            <p class="text-gray-600 mb-3">{{ project.location }}</p>
-            <p class="text-gray-700">{{ project.description }}</p>
+            <h3 class="text-xl font-semibold mb-2">{{ project.project }}</h3>
+            <p class="text-gray-600 mb-3">{{ project.investor }}</p>
+            <p class="text-gray-700">{{ project.consulting_work }}</p>
           </div>
         </div>
       </div>
       <div class="text-center mt-8">
-        <NuxtLink 
-          to="/project" 
-          class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Xem thêm dự án
-        </NuxtLink>
+        <NuxtLink to="/project" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"> Xem thêm dự án </NuxtLink>
       </div>
     </div>
 
-    <!-- Project Modal -->
-    <Transition name="modal">
-      <div 
-        v-if="isModalOpen" 
-        class="fixed inset-0 z-50 overflow-y-auto"
-        @click.self="closeModal"
-      >
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <!-- Background overlay -->
-          <Transition name="fade">
-            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-          </Transition>
-          <!-- Modal content -->
-          <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-              <div class="sm:flex sm:items-start">
-                <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                  <div class="flex justify-between items-start">
-                    <h3 class="text-2xl leading-6 font-bold text-gray-900 mb-4">
-                      {{ selectedProject.name }}
-                    </h3>
-                    <button 
-                      @click="closeModal"
-                      class="text-gray-400 hover:text-gray-500 focus:outline-none"
-                    >
-                      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  
-                  <div class="mt-2">
-                    <NuxtImg 
-                      placeholder="/placeholder.png" 
-                      :src="selectedProject.image" 
-                      :alt="selectedProject.name" 
-                      class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4"
-                    />
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <p class="text-sm text-gray-500">Địa điểm</p>
-                        <p class="font-medium">{{ selectedProject.location }}</p>
-                      </div>
-                      <div>
-                        <p class="text-sm text-gray-500">Năm thực hiện</p>
-                        <p class="font-medium">{{ selectedProject.year }}</p>
-                      </div>
-                      <div>
-                        <p class="text-sm text-gray-500">Chủ đầu tư</p>
-                        <p class="font-medium">{{ selectedProject.investor }}</p>
-                      </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                      <p class="text-sm text-gray-500">Dịch vụ cung cấp</p>
-                      <p class="font-medium">{{ selectedProject.services }}</p>
-                    </div>
-                    
-                    <p class="text-gray-700">{{ selectedProject.description }}</p>
-                  </div>
-                </div>
+    <!-- Project Modal using AntDV -->
+    <a-modal v-model:open="isModalOpen" :title="selectedProject?.name" width="80%" :footer="null" @cancel="closeModal">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <a-carousel arrows autoplay>
+            <template #prevArrow>
+              <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
+                <left-circle-outlined />
               </div>
+            </template>
+            <template #nextArrow>
+              <div class="custom-slick-arrow" style="right: 10px">
+                <right-circle-outlined />
+              </div>
+            </template>
+            <div v-for="(image, index) in selectedProject?.gallery" :key="index">
+              <NuxtImg placeholder="/placeholder.png" :src="image" :alt="`${selectedProject?.name} - Ảnh ${index + 1}`" class="w-full h-auto rounded-lg" />
             </div>
-            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-              <button 
-                type="button" 
-                @click="closeModal"
-                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm transition-colors"
-              >
-                Đóng
-              </button>
+          </a-carousel>
+        </div>
+        <div>
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-blue-700 mb-2">Thông tin dự án</h4>
+            <div class="space-y-2">
+              <p class="text-gray-700"><span class="font-medium">Địa điểm:</span> {{ selectedProject?.investor }}</p>
             </div>
+          </div>
+
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-blue-700 mb-2">Mô tả dự án</h4>
+            <p class="text-gray-700">{{ selectedProject?.description }}</p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold text-blue-700 mb-2">Dịch vụ cung cấp</h4>
+            <p class="text-gray-700">{{ selectedProject?.consulting_work }}</p>
           </div>
         </div>
       </div>
-    </Transition>
-    <About_Team/>
-    <About_Working/>
-    <About_Contact/>
+    </a-modal>
+    <About_Team />
+    <About_Working />
+    <About_Contact />
   </div>
 </template>
+
 <script setup>
+import { ref } from "vue";
+import { Modal as AModal, Carousel as ACarousel } from "ant-design-vue";
+
 const isModalOpen = ref(false);
 const selectedProject = ref(null);
+
 const projects = ref([
   {
-    id: 1,
-    name: "Cải tạo, nâng cấp đường Hương Sơn, TP Thái Nguyên",
-    location: "Thành phố Thái Nguyên",
-    description: "Tư vấn thiết kế hệ thống đường giao thông nông thôn",
-    year: "2020",
-    image: "/product/1.jpg",
+    TT: 1,
+    project: "Cải tạo, nâng cấp đường Hương Sơn, TP Thái Nguyên",
+    consulting_work: "Tư vấn thiết kế",
     investor: "UBND P.Hương Sơn",
-    services: "Tư vấn thiết kế kỹ thuật, lập dự toán, giám sát thi công hệ thống đường giao thông nông thôn",
+    image: "/images/projects/duong-huong-son.jpg",
+    gallery: ["/images/projects/duong-huong-son.jpg", "/images/projects/duong-huong-son-1.jpg"],
+    description: "Dự án cải tạo, nâng cấp đường Hương Sơn với chiều dài 1.2km, mặt đường rộng 7m. Bao gồm các hạng mục: san lấp mặt bằng, hệ thống thoát nước, chiếu sáng công cộng.",
   },
   {
-    id: 2,
-    name: " Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên",
-    location: "Thành phố Thái Nguyên",
-    description: "Tư vấn thiết kế hệ thống đường giao thông",
-    year: "2019",
-    image: "/product/2.jpg",
+    TT: 2,
+    project: "Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên",
+    consulting_work: "Tư vấn thiết kế",
     investor: "UBND phường Quang Vinh – TPTN.",
-    services: "Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên",
+    image: "/images/projects/tan-lap-ql3.jpg",
+    gallery: ["/images/projects/tan-lap-ql3.jpg", "/images/projects/tan-lap-ql3-1.jpg", "/images/projects/tan-lap-ql3-2.jpg"],
+    description: "Dự án xử lý đất thừa, kè ốp mái taluy dương và bổ sung rãnh thoát nước tại nút giao Tân Lập trên QL3, giúp cải thiện an toàn giao thông và hệ thống thoát nước.",
   },
+  // {
+  //   TT: 4,
+  //   project: "Cải tạo, nâng cấp đường Lưu Nhân Chú và trục đường vào phường Hương Sơn TPTN",
+  //   consulting_work: "Tư vấn thiết kế",
+  //   investor: "UBND phường Hương Sơn",
+  //   image: "/images/projects/luu-nhan-chu.jpg",
+  //   gallery: ["/images/projects/luu-nhan-chu-1.jpg", "/images/projects/luu-nhan-chu-2.jpg"],
+  //   description: "Dự án cải tạo, nâng cấp đường Lưu Nhân Chú và trục đường vào phường Hương Sơn với mục tiêu cải thiện giao thông khu vực, tăng cường kết nối hạ tầng đô thị.",
+  // },
   {
-    id: 3,
-    name: "Xây dựng, nâng cấp doanh trại Ban CHQS huyện Phú Lương, Hạng mục: Đường vào đơn vị, cổng chính, sân, cải tạo nhà bếp ăn",
-    location: "Thành phố Thái Nguyên",
-    description: "Tư vấn thiết kế",
-    year: "2021",
-    image: "/product/3.jpg",
-    investor: "Ban CHQS huyện Phú Lương",
-    services: "Xây dựng, nâng cấp doanh trại Ban CHQS huyện Phú Lương, Hạng mục: Đường vào đơn vị, cổng chính, sân, cải tạo nhà bếp ăn",
+    TT: 5,
+    project: "Các công trình cải tạo đường GTNT, cầu bê tông cốt thép tại Thái Nguyên, Bắc Kạn",
+    consulting_work: "Tư vấn thiết kế",
+    investor: "Thành phố Thái Nguyên - Bắc Kạn",
+    image: "/images/projects/gtnt-bac-kan.jpg",
+    gallery: ["/images/projects/gtnt-bac-kan-2.jpg", "/images/projects/gtnt-bac-kan-3.jpg", "/images/projects/gtnt-bac-kan-4.jpg"],
+    description: "Tập hợp các công trình tư vấn thiết kế tại Thái Nguyên và Bắc Kạn, bao gồm cải tạo đường giao thông nông thôn, xây dựng cầu bê tông cốt thép và hạ tầng liên quan.",
   },
 ]);
-const openModal = (project) => {
+
+const openModal = project => {
   selectedProject.value = project;
   isModalOpen.value = true;
-  document.body.style.overflow = 'hidden';
 };
 
 const closeModal = () => {
   isModalOpen.value = false;
-  document.body.style.overflow = 'auto';
 };
 </script>
 
 <style>
+/* Custom style for carousel dots */
+.ant-carousel :deep(.slick-dots) {
+  position: relative;
+  height: auto;
+}
+
+.ant-carousel :deep(.slick-dots li) {
+  width: auto;
+  height: auto;
+  margin: 0 4px;
+}
+
+.ant-carousel :deep(.slick-dots li button) {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.ant-carousel :deep(.slick-dots li.slick-active button) {
+  background: #1890ff;
+}
 </style>
