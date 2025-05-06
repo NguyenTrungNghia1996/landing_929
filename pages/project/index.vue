@@ -27,105 +27,66 @@
               <div>
                 <h3 class="text-xl font-bold mb-2 line-clamp-2">{{ shortenProjectName(project.project) }}</h3>
                 <p class="text-gray-500 text-sm mb-3"><span class="font-medium">Chủ đầu tư:</span> {{ project.investor || "" }}</p>
-                <p class="text-sm text-gray-500 mb-4">
-                  <!-- <span v-if="getProjectYear(project.project)" class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Năm: {{ getProjectYear(project.project) }} </span> -->
-                  <!-- <span v-else class="bg-gray-100 px-2 py-1 rounded transition-colors duration-200 hover:bg-gray-200"> Đã hoàn thành </span> -->
-                </p>
               </div>
             </div>
 
             <div class="flex justify-between items-center border-t pt-4">
-              <span class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full transition-colors duration-200 hover:bg-blue-200">
+              <a-tag :color="project.consulting_work.includes('thiết kế') ? 'blue' : 'green'">
                 {{ project.consulting_work }}
-              </span>
-              <button @click="openModal(project)" class="text-blue-600 hover:text-blue-800 font-medium flex items-center transition-colors duration-200 group">
+              </a-tag>
+              <a-button type="link" @click="openModal(project)" class="flex items-center p-0">
                 Chi tiết
-                <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-1">
-                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                </svg>
-              </button>
+                <template #icon><right-outlined /></template>
+              </a-button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Pagination with ellipsis -->
+      <!-- Pagination -->
       <div class="flex justify-center mt-12" v-if="filteredProjects.length > projectsPerPage">
-        <nav class="flex items-center space-x-2">
-          <button @click="prevPage" :disabled="currentPage === 1" class="w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200" :class="currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </button>
-
-          <template v-for="(page, index) in visiblePages" :key="index">
-            <button v-if="page === '...'" disabled class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500">...</button>
-            <button v-else @click="goToPage(page)" class="w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200" :class="page === currentPage ? 'bg-blue-600 text-white' : 'hover:bg-gray-200'">
-              {{ page }}
-            </button>
-          </template>
-
-          <button @click="nextPage" :disabled="currentPage === totalPages" class="w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200" :class="currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </button>
-        </nav>
+        <a-pagination v-model:current="currentPage" :total="filteredProjects.length" :pageSize="projectsPerPage" show-less-items />
       </div>
     </div>
 
     <!-- Project Modal -->
-    <transition enter-active-class="transition-opacity duration-300 ease-out" leave-active-class="transition-opacity duration-200 ease-in" enter-from-class="opacity-0" leave-to-class="opacity-0">
-      <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click.self="closeModal">
-        <transition enter-active-class="transition-all duration-300 ease-out" leave-active-class="transition-all duration-200 ease-in" enter-from-class="opacity-0 translate-y-4" leave-to-class="opacity-0 translate-y-4">
-          <div v-if="selectedProject" class="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto shadow-xl transform transition-all duration-300">
-            <!-- Modal Image Gallery -->
-            <div class="relative h-64 sm:h-80 md:h-96 bg-gray-200 overflow-hidden">
-              <NuxtImg placeholder="/placeholder.png" :src="selectedProject.image" :alt="selectedProject.project" class="w-full h-full object-cover" />
-              <div v-if="selectedProject.gallery && selectedProject.gallery.length > 0" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                <button v-for="(img, idx) in selectedProject.gallery" :key="idx" @click="selectedProject.image = img" class="w-12 h-12 rounded overflow-hidden border-2 transition-all duration-200" :class="selectedProject.image === img ? 'border-blue-500' : 'border-transparent hover:border-gray-300'">
-                  <NuxtImg placeholder="/placeholder.png" :src="img" class="w-full h-full object-cover" />
-                </button>
-              </div>
-            </div>
-
-            <div class="p-6">
-              <div class="flex justify-between items-start mb-6">
-                <div>
-                  <h3 class="text-2xl font-bold">{{ selectedProject.project }}</h3>
-                  <p class="text-gray-600 mt-2">{{ selectedProject.investor }}</p>
-                </div>
-                <button @click="closeModal" class="text-gray-500 hover:text-gray-700 transition-colors duration-200 p-1 rounded-full hover:bg-gray-100">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
-
-              <div class="space-y-6">
-                <div class="bg-gray-50 p-4 rounded-lg transition-colors duration-200 hover:bg-gray-100">
-                  <h4 class="font-semibold text-lg mb-3 text-blue-700">Thông tin dự án</h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p class="text-gray-700"><span class="font-medium">Chủ đầu tư:</span> {{ selectedProject.investor || "Không có thông tin" }}</p>
-                    </div>
-                    <div>
-                      <!-- <p class="text-gray-700"><span class="font-medium">Địa điểm:</span> {{ selectedProject.project }}</p> -->
-                      <p class="text-gray-700"><span class="font-medium">Hạng mục:</span> {{ selectedProject.consulting_work }}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div v-if="selectedProject.description" class="bg-gray-50 p-4 rounded-lg transition-colors duration-200 hover:bg-gray-100">
-                  <h4 class="font-semibold text-lg mb-3 text-blue-700">Mô tả dự án</h4>
-                  <p class="text-gray-700 whitespace-pre-line">{{ selectedProject.description }}</p>
-                </div>
-              </div>
-            </div>
+    <a-modal v-model:visible="isModalOpen" :title="selectedProject?.project" width="90%" :footer="null" @cancel="closeModal" class="max-w-4xl">
+      <div class="modal-content">
+        <!-- Image Gallery -->
+        <a-carousel v-if="selectedProject?.gallery?.length > 0" arrows dots-class="custom-dots">
+          <div v-for="(img, idx) in selectedProject.gallery" :key="idx" class="carousel-image">
+            <NuxtImg placeholder="/placeholder.png" :src="img" class="w-full h-64 sm:h-80 md:h-96 object-cover" />
           </div>
-        </transition>
+        </a-carousel>
+        <div v-else class="h-64 sm:h-80 md:h-96 bg-gray-200 flex items-center justify-center">
+          <NuxtImg placeholder="/placeholder.png" :src="selectedProject?.image" class="w-full h-full object-cover" />
+        </div>
+
+        <div class="p-4 md:p-6">
+          <div class="mb-6">
+            <h3 class="text-xl md:text-2xl font-bold">{{ selectedProject?.project }}</h3>
+            <p class="text-gray-600 mt-2">{{ selectedProject?.investor }}</p>
+          </div>
+
+          <div>
+            <div class="text-blue-700 font-semibold mb-2">Thông tin dự án</div>
+            <a-descriptions bordered column="1">
+              <a-descriptions-item label="Chủ đầu tư">
+                {{ selectedProject?.investor || "Không có thông tin" }}
+              </a-descriptions-item>
+              <a-descriptions-item label="Hạng mục">
+                {{ selectedProject?.consulting_work || "Không có thông tin" }}
+              </a-descriptions-item>
+            </a-descriptions>
+
+            <div class="text-blue-700 font-semibold mt-4 mb-2">Mô tả dự án</div>
+            <p class="text-gray-700 whitespace-pre-line">
+              {{ selectedProject?.description || "Không có mô tả" }}
+            </p>
+          </div>
+        </div>
       </div>
-    </transition>
+    </a-modal>
 
     <!-- Stats Section -->
     <div class="bg-blue-500 text-white py-16">
@@ -159,9 +120,7 @@
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <NuxtLink to="/contact" class="px-6 py-3 bg-white text-blue-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold"> Gửi yêu cầu </NuxtLink>
           <NuxtLink to="/contact" class="flex items-center justify-center px-6 py-3 border border-white rounded-lg hover:bg-blue-500 transition-colors">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-            </svg>
+            <phone-outlined class="mr-2" />
             <span>0986 108 999</span>
           </NuxtLink>
         </div>
@@ -289,56 +248,7 @@ const paginatedProjects = computed(() => {
   return filteredProjects.value.slice(startIndex, startIndex + projectsPerPage);
 });
 
-// Tính tổng số trang
-const totalPages = computed(() => {
-  return Math.ceil(filteredProjects.value.length / projectsPerPage);
-});
-
-const visiblePages = computed(() => {
-  const total = totalPages.value;
-  const current = currentPage.value;
-  const range = 2; // Số trang hiển thị xung quanh trang hiện tại
-  let pages = [];
-
-  // Luôn hiển thị trang đầu tiên
-  if (total > 1) {
-    pages.push(1);
-  }
-
-  // Thêm dấu ... nếu cần
-  if (current - range > 2) {
-    pages.push("...");
-  }
-
-  // Thêm các trang xung quanh trang hiện tại
-  for (let i = Math.max(2, current - range); i <= Math.min(total - 1, current + range); i++) {
-    pages.push(i);
-  }
-
-  // Thêm dấu ... nếu cần
-  if (current + range < total - 1) {
-    pages.push("...");
-  }
-
-  // Luôn hiển thị trang cuối cùng nếu có nhiều hơn 1 trang
-  if (total > 1) {
-    pages.push(total);
-  }
-
-  return pages;
-});
-
 // Các hàm hỗ trợ
-const getProjectYear = projectName => {
-  const yearMatch = projectName.match(/\((\d{4})\)/);
-  return yearMatch ? yearMatch[1] : null;
-};
-
-const getProjectLocation = projectName => {
-  const locationMatch = projectName.match(/(TP|Thành phố|huyện|xã|phường|tỉnh) [\w\s]+/);
-  return locationMatch ? locationMatch[0] : "Thái Nguyên";
-};
-
 const shortenProjectName = name => {
   if (name.length > 50) {
     return name.substring(0, 50) + "...";
@@ -348,37 +258,78 @@ const shortenProjectName = name => {
 
 // Các hàm xử lý modal
 const openModal = project => {
-  selectedProject.value = JSON.parse(JSON.stringify(project)); // Deep copy
+  selectedProject.value = JSON.parse(JSON.stringify(project));
   isModalOpen.value = true;
-  document.body.style.overflow = "hidden";
 };
 
 const closeModal = () => {
   isModalOpen.value = false;
-  setTimeout(() => {
-    selectedProject.value = null;
-    document.body.style.overflow = "auto";
-  }, 300);
+  selectedProject.value = null;
 };
 
-const filterProjects = category => {
-  activeCategory.value = category;
+const filterProjects = () => {
   currentPage.value = 1;
 };
-
-const nextPage = () => {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++;
-  }
-};
-
-const prevPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value--;
-  }
-};
-
-const goToPage = page => {
-  currentPage.value = page;
-};
 </script>
+
+<style>
+/* Custom styles for antd components */
+.ant-modal-body {
+  padding: 0 !important;
+}
+
+.ant-carousel .slick-dots.custom-dots li button {
+  background: #1890ff;
+}
+
+.ant-carousel .slick-dots.custom-dots li.slick-active button {
+  background: #1890ff;
+  width: 20px;
+}
+
+.ant-radio-button-wrapper {
+  @apply h-auto py-2 px-4;
+}
+
+.ant-pagination-item-active {
+  @apply border-blue-600 bg-blue-600 text-white;
+}
+
+.ant-pagination-item-active a {
+  @apply text-white;
+}
+
+.ant-pagination-item:hover {
+  @apply border-blue-400;
+}
+
+.ant-pagination-item:hover a {
+  @apply text-blue-600;
+}
+
+.ant-tag {
+  @apply m-0;
+}
+
+@media (max-width: 640px) {
+  .ant-radio-group {
+    @apply w-full;
+  }
+
+  .ant-radio-button-wrapper {
+    @apply flex-1 text-center px-2;
+  }
+
+  .ant-modal {
+    @apply w-full max-w-full top-0;
+  }
+
+  .ant-modal-content {
+    @apply h-screen;
+  }
+
+  .modal-content {
+    @apply h-[calc(100vh-55px)] overflow-y-auto;
+  }
+}
+</style>
