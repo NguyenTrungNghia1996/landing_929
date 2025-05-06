@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Tại sao chọn chúng tôi?</h2>
-        <p class="text-xl max-w-2xl mx-auto">Những giá trị khác biệt mà Công ty CP Tư vấn Xây dựng 929 mang lại</p>
+        <p class="text-xl max-w-2xl mx-auto">Những giá trị khác biệt mà Công ty Cổ Phần Tư vấn Xây dựng 929 mang lại</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">

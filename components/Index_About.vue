@@ -6,7 +6,7 @@
           <NuxtImg placeholder="/placeholder.png" src="/home.jpg" alt="Về công ty" class="rounded-lg shadow-lg w-full" />
         </div>
         <div class="md:w-1/2">
-          <h2 class="text-3xl font-bold text-blue-800 mb-4">Công Ty CP Tư Vấn Xây Dựng 929</h2>
+          <h2 class="text-3xl font-bold text-blue-800 mb-4">Công Ty Cổ Phần Tư Vấn Xây Dựng 929</h2>
           <p class="text-gray-700 mb-6">Với giấy chứng nhận kinh doanh số 4600796888 do Sở kế hoạch và đầu tư tỉnh Thái Nguyên cấp, chúng tôi tự hào là đơn vị tư vấn xây dựng uy tín tại Thái Nguyên và các tỉnh lân cận.</p>
           <div class="space-y-4">
             <div class="flex items-start">
