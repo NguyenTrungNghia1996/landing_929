@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   pinia: { storesDirs: ["./stores/**"] },
   runtimeConfig: {
     public: { baseURL: process.env.NUXT_PUBLIC_BASE_URL || "localhost:3000" },
-    mongodbUri: process.env.NUXT_PRIVATE_MONGODB_URI || "mongodb+srv://admin:cr969bp6x6@929.jq1ucvs.mongodb.net/?retryWrites=true&w=majority&appName=929",
+    mongodbUri: process.env.NUXT_PRIVATE_MONGODB_URI || "",
     mongodbName: process.env.NUXT_PRIVATE_MONGODB_NAME || "nuxt_app",
     jwtSecret: process.env.NUXT_PRIVATE_JWT_SECRET || "NguyenAnh@3011",
     jwtExpiresIn: process.env.NUXT_PRIVATE_JWT_EXPIRES_IN || "1d",
