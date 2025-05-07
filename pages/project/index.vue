@@ -279,12 +279,12 @@ const projects = ref([
   },
   {
     TT: 7,
-    project: "Cải tạo, nâng cấp chợ truyền thống xã Quyết Thắng – TP Thái Nguyên",
+    project: "Cải tạo, nâng cấp khuôn viên đài tưởng niệm liệt sỹ xã Quyết Thắng TPTN",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND xã Quyết Thắng – TPTN",
     image: "/images/projects/7.jpg",
     gallery: ["/images/projects/7.jpg"],
-    description: "Dự án cải tạo chợ truyền thống xã Quyết Thắng nhằm nâng cao cơ sở hạ tầng và điều kiện kinh doanh cho tiểu thương địa phương.",
+    description: "Cải tạo, nâng cấp khuôn viên đài tưởng niệm liệt sỹ xã Quyết Thắng TPTN",
   },
   {
     TT: 8,
