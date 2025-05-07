@@ -81,7 +81,6 @@
         <div class="relative">
           <a-carousel 
             v-if="selectedProject?.gallery?.length > 0" 
-            arrows 
             dots-class="custom-dots"
             class="project-gallery"
           >
