@@ -10,6 +10,14 @@
 
     <!-- Projects Filter -->
     <div class="container mx-auto px-4 py-12">
+      <!-- <div class="mb-8">
+        <a-radio-group v-model:value="activeCategory" button-style="solid" @change="filterProjects" class="w-full overflow-x-auto pb-2">
+          <a-radio-button v-for="category in categories" :key="category" :value="category" class="whitespace-nowrap">
+            {{ category }}
+          </a-radio-button>
+        </a-radio-group>
+      </div> -->
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div v-for="(project, index) in paginatedProjects" :key="index" class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
           <!-- Project Image -->
@@ -49,43 +57,126 @@
       </div>
     </div>
 
-    <!-- Project Modal -->
-    <a-modal v-model:open="isModalOpen" :title="selectedProject?.project" width="90%" :footer="null" @cancel="closeModal" class="max-w-4xl">
+    <!-- Project Modal - Redesigned -->
+    <a-modal
+      v-model:open="isModalOpen"
+      :title="null"
+      width="100%"
+      :footer="null"
+      @cancel="closeModal"
+      class="max-w-2xl"
+      :wrap-class-name="'project-modal'"
+      :closable="false"
+    >
       <div class="modal-content">
+        <!-- Close Button (Mobile) -->
+        <button 
+          @click="closeModal"
+          class="absolute top-4 right-4 z-50 bg-white/80 rounded-full p-2 shadow-md sm:hidden"
+        >
+          <close-outlined class="text-lg" />
+        </button>
+
         <!-- Image Gallery -->
-        <a-carousel v-if="selectedProject?.gallery?.length > 0" arrows dots-class="custom-dots">
-          <div v-for="(img, idx) in selectedProject.gallery" :key="idx" class="carousel-image">
-            <NuxtImg placeholder="/placeholder.png" :src="img" class="w-full h-64 sm:h-80 md:h-96 object-cover" />
+        <div class="relative">
+          <a-carousel 
+            v-if="selectedProject?.gallery?.length > 0" 
+            arrows 
+            dots-class="custom-dots"
+            class="project-gallery"
+          >
+            <div v-for="(img, idx) in selectedProject.gallery" :key="idx" class="carousel-image">
+              <NuxtImg 
+                placeholder="/placeholder.png" 
+                :src="img" 
+                class="w-full h-48 sm:h-64 object-cover" 
+              />
+            </div>
+          </a-carousel>
+          <div v-else class="h-48 sm:h-64 bg-gray-200 flex items-center justify-center">
+            <NuxtImg 
+              placeholder="/placeholder.png" 
+              :src="selectedProject?.image" 
+              class="w-full h-full object-cover" 
+            />
           </div>
-        </a-carousel>
-        <div v-else class="h-64 sm:h-80 md:h-96 bg-gray-200 flex items-center justify-center">
-          <NuxtImg placeholder="/placeholder.png" :src="selectedProject?.image" class="w-full h-full object-cover" />
         </div>
 
-        <div class="p-4 md:p-6">
-          <div class="mb-6">
-            <h3 class="text-xl md:text-2xl font-bold">{{ selectedProject?.project }}</h3>
-            <p class="text-gray-600 mt-2">{{ selectedProject?.investor }}</p>
-          </div>
+        <!-- Project Info -->
+        <div class="p-4">
+          <!-- Project Title -->
+          <h3 class="text-xl font-bold text-gray-800 mb-1">
+            {{ selectedProject?.project }}
+          </h3>
+          
+          <!-- Investor -->
+          <p class="text-gray-600 text-sm mb-3">
+            {{ selectedProject?.investor || "Không có thông tin" }}
+          </p>
 
-          <div>
-            <div class="text-blue-700 font-semibold mb-2">Thông tin dự án</div>
-            <a-descriptions bordered column="1">
-              <a-descriptions-item label="Chủ đầu tư">
-                {{ selectedProject?.investor || "Không có thông tin" }}
-              </a-descriptions-item>
-              <a-descriptions-item label="Hạng mục">
-                {{ selectedProject?.consulting_work || "Không có thông tin" }}
-              </a-descriptions-item>
-            </a-descriptions>
+          <!-- Work Type Badge -->
+          <a-tag 
+            :color="selectedProject?.consulting_work.includes('thiết kế') ? 'blue' : 'green'"
+            class="mb-4"
+          >
+            {{ selectedProject?.consulting_work }}
+          </a-tag>
 
-            <div class="text-blue-700 font-semibold mt-4 mb-2">Mô tả dự án</div>
-            <p class="text-gray-700 whitespace-pre-line">
+          <!-- Project Description -->
+          <div class="mb-4">
+            <div class="text-blue-700 font-medium mb-2">Mô tả dự án</div>
+            <p class="text-gray-700 text-sm whitespace-pre-line">
               {{ selectedProject?.description || "Không có mô tả" }}
             </p>
           </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-between mt-6">
+            <a-button 
+              type="primary" 
+              @click="closeModal"
+              class="flex-1 sm:hidden"
+            >
+              Đóng
+            </a-button>
+            <a-button 
+              v-if="selectedProject?.gallery?.length > 1"
+              type="default" 
+              @click="openGalleryFullscreen"
+              class="hidden sm:inline-flex items-center"
+            >
+              <picture-outlined class="mr-1" />
+              Xem hình ảnh
+            </a-button>
+          </div>
         </div>
       </div>
+    </a-modal>
+
+    <!-- Fullscreen Gallery Modal -->
+    <a-modal
+      v-model:open="isGalleryFullscreen"
+      :title="'Hình ảnh dự án'"
+      width="100%"
+      :footer="null"
+      @cancel="isGalleryFullscreen = false"
+      class="gallery-fullscreen"
+      :wrap-class-name="'gallery-modal'"
+    >
+      <a-carousel 
+        v-if="selectedProject?.gallery?.length > 0" 
+        arrows 
+        dots-class="custom-dots"
+        class="fullscreen-gallery"
+      >
+        <div v-for="(img, idx) in selectedProject.gallery" :key="idx" class="carousel-image">
+          <NuxtImg 
+            placeholder="/placeholder.png" 
+            :src="img" 
+            class="w-full h-full object-contain" 
+          />
+        </div>
+      </a-carousel>
     </a-modal>
 
     <!-- Stats Section -->
@@ -130,6 +221,8 @@
 </template>
 
 <script setup>
+import { RightOutlined, CloseOutlined, PictureOutlined, PhoneOutlined } from '@ant-design/icons-vue';
+
 const projects = ref([
   {
     TT: 1,
@@ -225,6 +318,7 @@ const projects = ref([
 
 const selectedProject = ref(null);
 const isModalOpen = ref(false);
+const isGalleryFullscreen = ref(false);
 const activeCategory = ref("Tất cả");
 const currentPage = ref(1);
 const projectsPerPage = 6;
@@ -249,7 +343,7 @@ const paginatedProjects = computed(() => {
 });
 
 // Các hàm hỗ trợ
-const shortenProjectName = name => {
+const shortenProjectName = (name) => {
   if (name.length > 50) {
     return name.substring(0, 50) + "...";
   }
@@ -257,7 +351,7 @@ const shortenProjectName = name => {
 };
 
 // Các hàm xử lý modal
-const openModal = project => {
+const openModal = (project) => {
   selectedProject.value = JSON.parse(JSON.stringify(project));
   isModalOpen.value = true;
 };
@@ -267,30 +361,78 @@ const closeModal = () => {
   selectedProject.value = null;
 };
 
+const openGalleryFullscreen = () => {
+  isGalleryFullscreen.value = true;
+};
+
 const filterProjects = () => {
   currentPage.value = 1;
 };
 </script>
 
 <style>
-/* Custom styles for antd components */
-.ant-modal-body {
-  padding: 0 !important;
+/* Project Modal Styles */
+.project-modal .ant-modal-content {
+  @apply p-0 overflow-hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
+.project-modal .ant-modal-body {
+  @apply p-0 flex-1 overflow-y-auto;
+}
+
+.project-gallery .slick-slide {
+  @apply h-48 sm:h-64;
+}
+
+/* Fullscreen Gallery Styles */
+.gallery-modal .ant-modal-content {
+  @apply h-full flex flex-col;
+}
+
+.gallery-modal .ant-modal-body {
+  @apply flex-1 p-0;
+}
+
+.fullscreen-gallery {
+  @apply h-full;
+}
+
+.fullscreen-gallery .slick-slide {
+  @apply h-[calc(100vh-110px)] flex items-center justify-center;
+}
+
+/* Custom dots for carousel */
 .ant-carousel .slick-dots.custom-dots li button {
-  background: #1890ff;
+  @apply bg-gray-400;
 }
 
 .ant-carousel .slick-dots.custom-dots li.slick-active button {
-  background: #1890ff;
-  width: 20px;
+  @apply bg-blue-600 w-4;
 }
 
-.ant-radio-button-wrapper {
-  @apply h-auto py-2 px-4;
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .project-modal {
+    @apply top-0 m-0 w-full max-w-none h-full;
+  }
+  
+  .project-modal .ant-modal-content {
+    @apply rounded-none h-full;
+  }
+  
+  .project-gallery .slick-slide {
+    @apply h-48;
+  }
+  
+  .ant-radio-button-wrapper {
+    @apply px-2 text-sm;
+  }
 }
 
+/* Pagination styles */
 .ant-pagination-item-active {
   @apply border-blue-600 bg-blue-600 text-white;
 }
@@ -309,27 +451,5 @@ const filterProjects = () => {
 
 .ant-tag {
   @apply m-0;
-}
-
-@media (max-width: 640px) {
-  .ant-radio-group {
-    @apply w-full;
-  }
-
-  .ant-radio-button-wrapper {
-    @apply flex-1 text-center px-2;
-  }
-
-  .ant-modal {
-    @apply w-full max-w-full top-0;
-  }
-
-  .ant-modal-content {
-    @apply h-screen;
-  }
-
-  .modal-content {
-    @apply h-[calc(100vh-55px)] overflow-y-auto;
-  }
 }
 </style>
