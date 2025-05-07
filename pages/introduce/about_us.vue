@@ -95,7 +95,7 @@ const projects = ref([
     TT: 2,
     project: "Xử lý đất thừa, kè ốp mái ta luy dương và bổ sung rãnh thoát nước nút giao Tân Lập trên QL3 mới tỉnh Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
-    investor: "UBND phường Quang Vinh – TPTN.",
+    investor: "Sở Giao thông vận tải Thái Nguyên",
     image: "/images/projects/tan-lap-ql3.jpg",
     gallery: ["/images/projects/tan-lap-ql3.jpg", "/images/projects/tan-lap-ql3-1.jpg", "/images/projects/tan-lap-ql3-2.jpg"],
     description: "Dự án xử lý đất thừa, kè ốp mái taluy dương và bổ sung rãnh thoát nước tại nút giao Tân Lập trên QL3, giúp cải thiện an toàn giao thông và hệ thống thoát nước.",
