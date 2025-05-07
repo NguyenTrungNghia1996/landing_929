@@ -282,8 +282,8 @@ const projects = ref([
     project: "Cải tạo, nâng cấp khuôn viên đài tưởng niệm liệt sỹ xã Quyết Thắng TPTN",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND xã Quyết Thắng – TPTN",
-    image: "/images/projects/7.jpg",
-    gallery: ["/images/projects/7.jpg"],
+    image: "/images/projects/_7.jpg",
+    gallery: ["/images/projects/_7.jpg"],
     description: "Cải tạo, nâng cấp khuôn viên đài tưởng niệm liệt sỹ xã Quyết Thắng TPTN",
   },
   {
