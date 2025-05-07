@@ -273,8 +273,8 @@ const projects = ref([
     project: "Nâng cấp, mở rộng tuyến đường Lương Thế Vinh – TP Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND phường Quang Trung - TPTN",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/6.jpg",
+    gallery: ["/images/projects/6.jpg"],
     description: "Dự án nâng cấp, mở rộng tuyến đường Lương Thế Vinh, giúp mở rộng lưu thông, giảm ùn tắc giao thông đô thị.",
   },
   {
@@ -300,8 +300,8 @@ const projects = ref([
     project: "Nâng cấp, cải tạo đường vào Công ty CP Giấy Hoàng Văn Thụ, phường Quan Triều – TP Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND phường Quan Triều - TPTN",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/9.jpg",
+    gallery: ["/images/projects/9.jpg"],
     description: "Dự án cải tạo, nâng cấp tuyến đường vào Công ty CP Giấy Hoàng Văn Thụ giúp đảm bảo giao thông thuận lợi cho hoạt động sản xuất kinh doanh.",
   },
   {
