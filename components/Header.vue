@@ -3,7 +3,7 @@
     <div class="container mx-auto h-full flex justify-between items-center px-4">
       <NuxtLink to="/" class="group flex items-center gap-1 hover:opacity-90 transition-opacity" aria-label="Trang chủ">
         <div class="text-center">
-          <span class="block text-xl md:text-2xl font-bold text-gray-900 leading-tight group-hover:text-primary transition-colors"> CÔNG TY CPTV </span>
+          <span class="block text-xl md:text-2xl font-bold text-gray-900 leading-tight group-hover:text-primary transition-colors"> CÔNG TY CỔ PHẦN TƯ VẤN </span>
           <span class="block text-lg md:text-xl font-extrabold text-primary tracking-wider mt-[-2px] relative">
             <span class="relative z-10">XÂY DỰNG 929</span>
             <span class="absolute bottom-0 left-0 right-0 h-1 bg-yellow-400 z-0 opacity-70 transform translate-y-1"></span>
