@@ -264,8 +264,8 @@ const projects = ref([
     project: "Sửa chữa, nâng cấp tuyến đường giao thông từ trụ sở UBND xã Tân Khánh đi Hoàng Mai huyện Phú Bình",
     consulting_work: "Tư vấn thiết kế",
     investor: "Ban QLDA ĐTXD huyện Phú Bình, tỉnh Thái Nguyên",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/5.jpg",
+    gallery: ["/images/projects/5.jpg"],
     description: "Dự án nâng cấp tuyến đường giao thông kết nối UBND xã Tân Khánh đi Hoàng Mai, nâng cao chất lượng hạ tầng giao thông nông thôn.",
   },
   {
@@ -282,8 +282,8 @@ const projects = ref([
     project: "Cải tạo, nâng cấp chợ truyền thống xã Quyết Thắng – TP Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND xã Quyết Thắng – TPTN",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/7.jpg",
+    gallery: ["/images/projects/7.jpg"],
     description: "Dự án cải tạo chợ truyền thống xã Quyết Thắng nhằm nâng cao cơ sở hạ tầng và điều kiện kinh doanh cho tiểu thương địa phương.",
   },
   {
@@ -291,8 +291,8 @@ const projects = ref([
     project: "Đường GTNT xã Thịnh Đức – TP Thái Nguyên",
     consulting_work: "Tư vấn thiết kế",
     investor: "UBND xã Thịnh Đức – TPTN",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/8.jpg",
+    gallery: ["/images/projects/8.jpg"],
     description: "Dự án đường giao thông nông thôn tại xã Thịnh Đức gồm các xóm Ao Sen, Cây Thị, Đồng Chanh, Đức Cường, Đầu Phần, Tân Đức, góp phần phát triển hạ tầng nông thôn.",
   },
   {
@@ -309,8 +309,8 @@ const projects = ref([
     project: "Khu tái định cư tổ 4 Tân Thịnh thuộc dự án đường Bắc Sơn kéo dài – TP Thái Nguyên",
     consulting_work: "Tư vấn giám sát",
     investor: "Ban QLDA ĐTXD TP Thái Nguyên, tỉnh Thái Nguyên",
-    image: "/placeholder.png",
-    gallery: ["/placeholder.png"],
+    image: "/images/projects/10.jpg",
+    gallery: ["/images/projects/10.jpg"],
     description: "Dự án khu tái định cư tổ 4 Tân Thịnh thuộc tuyến đường Bắc Sơn kéo dài nhằm bố trí chỗ ở mới cho các hộ dân bị ảnh hưởng bởi giải phóng mặt bằng.",
   },
 ]);
