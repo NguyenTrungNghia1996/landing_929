@@ -56,7 +56,7 @@
                 <Icon name="mdi:map-marker" class="text-base mt-0.5 mr-1 flex-shrink-0" />
                 <span class="font-bold">Trụ sở chính: </span>
               </div>
-              <span>Tổ 7 đường 3-2 phường Tân Lập, TP Thái Nguyên</span>
+              <span>Tổ 7 đường 3-2 phường Tân Lập, Tỉnh Thái Nguyên , TP Thái Nguyên</span>
             </li>
             <li class="flex-col grid grid-cols-1 md:grid-cols-2 sm:flex-row sm:items-center gap-1 sm:gap-2">
               <div class="">
@@ -65,7 +65,7 @@
               </div>
               <div class="">
                 <Icon name="mdi:email" class="text-base mr-1 flex-shrink-0" />
-                <span>Email: congty929@gmail.com.vn</span>
+                <span>Email: congty929@gmail.com</span>
               </div>
             </li>
             <li class="flex items-center">

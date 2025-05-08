@@ -59,9 +59,8 @@
             <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500">
               <h4 class="font-bold text-gray-800 mb-2">Dự án tiêu biểu:</h4>
               <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                <li>Đường BTXM các phường tại TP Thái Nguyên</li>
-                <li>Trường mầm non 19-5 thành phố Thái Nguyên</li>
-                <li>Hệ thống kênh mương nội đồng các xã</li>
+                <li>Các công trình GTNT trên địa bàn tỉnh Thái Nguyên và Bắc Kạn</li>
+                <li>Một số công trình Trung tâm văn hóa thể thao, trường Mầm non trên địa bàn tỉnh Thái Nguyên</li>
               </ul>
             </div>
           </div>
