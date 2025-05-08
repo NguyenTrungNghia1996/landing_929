@@ -313,6 +313,15 @@ const projects = ref([
     gallery: ["/images/projects/_10.jpg"],
     description: "Dự án khu tái định cư tổ 4 Tân Thịnh thuộc tuyến đường Bắc Sơn kéo dài nhằm bố trí chỗ ở mới cho các hộ dân bị ảnh hưởng bởi giải phóng mặt bằng.",
   },
+  {
+    TT: 11,
+    project: "Xây dựng cầu tổ 12, phường Hương Sơn, TPTN",
+    consulting_work: "Tư vấn thiết kế",
+    investor: "UBND phường Hương Sơn",
+    image: "/images/projects/11.jpg",
+    gallery: ["/images/projects/11.jpg"],
+    description: "Xây dựng cầu tổ 12, phường Hương Sơn, TPTN",
+  },
 ]);
 
 const selectedProject = ref(null);
